@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <section>
+      <div class="form-container">
+        <h1>Crie sua conta</h1>
+        <p>Preencha os campos abaixo para se cadastrar</p>
+
+        <!-- Formulário de cadastro -->
+        <form id="signupForm">
+          <fieldset>
+            <label for="nome">Nome completo</label>
+            <input placeholder="Digite seu nome" type="text" id="nome" required>
+          </fieldset>
+
+          <fieldset>
+            <label for="email">Email</label>
+            <input placeholder="Digite seu email" type="email" id="email" required>
+          </fieldset>
+
+          <fieldset>
+            <label for="senha">Senha</label>
+            <input placeholder="Digite sua senha" type="password" id="senha" required>
+          </fieldset>
+
+          <button type="submit">Cadastrar</button>
+        </form>
+
+        <div class="divider">
+          <div class="line"></div>
+          <p>Ou</p>
+          <div class="line"></div>
+        </div>
+
+        <p>Já tem conta? <a href="./../singin/index.html">Fazer login</a></p>
+      </div>
+    </section>
+
+    <img src="../../Assets/images/chris-lee-70l1tDAI6rM-unsplash 1.png" alt="Imagem ilustrativa">
+  </main>
+
+  <!-- Script para conectar com o backend -->
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", async function(event) {
+      event.preventDefault(); // impede o reload da página
+
+      const nome = document.getElementById("nome").value;
+      const email = document.getElementById("email").value;
+      const senha = document.getElementById("senha").value;
+
+      try {
+        const response = await fetch("http://localhost:8080/Usuario/Cadastro", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ nome: nome, email: email, senha: senha })
+        });
+
+        const result = await response.json();
+
+        alert("Usuário cadastrado com sucesso!");
+        console.log(result);
+
+        // redireciona para o login
+        window.location.href = "index.html";
+
+      } catch (error) {
+        console.error("Erro:", error);
+        alert("Erro ao conectar com o servidor");
+      }
+    });
+  </script>
+</body>
+</html>

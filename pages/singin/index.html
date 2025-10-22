@@ -1,48 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign in</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main>
-        <section>
-            <div class="form-container">
+  <main>
+    <section>
+      <div class="form-container">
+        <h1>Bem-vindo de volta</h1>
+        <p>Digite suas credenciais para acessar sua conta</p>
 
-                <h1>Welcome back</h1>
-                <p>Enter your Credentials to access your account</p>
-                <form action="" method="post">
-                    
-                    <fieldset>
-                        <label for="email">Email address</label>
-                        <input type="email" name="email" id="email">
-                    </fieldset>
-                    
-                    
-                    <fieldset>
-                        <div class="title-wrapper">
-                            <label for="password">password</label>
-                            <a href="">Forgot your password</a>
-                        </div>
-                        <input type="password" name="password" id="password" >
-                    </fieldset>
-                    
-                    <fieldset>
-                        
-                        <input type="checkbox" name="checkbox" id="checkbox" >
-                        <label for="checkbox">Remember for 30 days</label>
-                        
-                    </fieldset>
-                    
-                    <button type="submit">login</button>
-                </form>
-                
+        <!-- Formulário de login -->
+        <form id="loginForm">
+          <fieldset>
+            <label for="email">Email</label>
+            <input placeholder="Digite seu email" type="email" id="email" required>
+          </fieldset>
+
+          <fieldset>
+            <div class="title-wrapper">
+              <label for="password">Senha</label>
+              <a href="#">Esqueceu a senha?</a>
             </div>
-            </section>
-            <img src="../../Assets/images/chris-lee-70l1tDAI6rM-unsplash 1.png" alt="Foto da planta costela de adão">
-        </main>
-        
+            <input placeholder="Digite sua senha" type="password" id="password" required>
+          </fieldset>
+
+          <fieldset class="checkbox">
+            <input type="checkbox" id="checkbox">
+            <label for="checkbox">Lembrar por 30 dias</label>
+          </fieldset>
+
+          <button type="submit">Entrar</button>
+        </form>
+
+        <div class="divider">
+          <div class="line"></div>
+          <p>Ou</p>
+          <div class="line"></div>
+        </div>
+
+        <p>Ainda não tem conta? <a href="./../singup/index.html">Cadastre-se</a></p>
+      </div>
+    </section>
+
+    <img src="../../Assets/images/chris-lee-70l1tDAI6rM-unsplash 1.png" alt="Imagem ilustrativa">
+  </main>
+
+  <!-- Script de conexão com o backend -->
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", async function(event) {
+      event.preventDefault(); // evita recarregar a página
+
+      // captura os dados do formulário
+      const email = document.getElementById("email").value;
+      const senha = document.getElementById("password").value;
+
+      try {
+        const response = await fetch("http://localhost:8080/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ email: email, senha: senha })
+        });
+
+        const result = await response.text();
+
+        // mostra a resposta vinda do backend
+        alert(result);
+
+      } catch (error) {
+        console.error("Erro:", error);
+        alert("Erro ao conectar com o servidor");
+      }
+    });
+  </script>
 </body>
 </html>

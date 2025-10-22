@@ -15,3 +15,12 @@ body{
     font-weight: 500;
     font-style: normal;
 }
+:root{
+    --white: #FFFFFF;
+    --black: #000000; 
+    --grey: #D9D9D9;
+    --green: #3A5B22;
+    --blue: #0F3DDE;
+    --border-gray: #F5F5F5;
+}
+
