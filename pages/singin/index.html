@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <main>
@@ -13,7 +13,7 @@
         <h1>Bem-vindo de volta</h1>
         <p>Digite suas credenciais para acessar sua conta</p>
 
-        <!-- Formulário de login -->
+       
         <form id="loginForm">
           <fieldset>
             <label for="email">Email</label>
@@ -33,7 +33,7 @@
             <label for="checkbox">Lembrar por 30 dias</label>
           </fieldset>
 
-          <button type="submit">Entrar</button>
+          <button type="">Entrar</button>
         </form>
 
         <div class="divider">
@@ -42,7 +42,20 @@
           <div class="line"></div>
         </div>
 
-        <p>Ainda não tem conta? <a href="./../singup/index.html">Cadastre-se</a></p>
+        
+      <div class="sso-container">
+        <button>
+          <img src="./../../Assets/Icons/icons8-google 1.svg" alt="Logo do google">
+          <p>Sing in with google</p>
+        </button>
+        <button>
+          <img src="./../../Assets/Icons/icons8-apple-logo 1.svg" alt="Logo da apple">
+          <p>Sing in with appgle</p>
+        </button>
+        
+      </div>
+      
+      <p class="redirect-sign-Up">Ainda não tem conta? <a href="./../singup/index.html">Cadastre-se</a></p>
       </div>
     </section>
 
@@ -50,7 +63,7 @@
   </main>
 
   <!-- Script de conexão com o backend -->
-  <script>
+  <!-- <script> 
     document.getElementById("loginForm").addEventListener("submit", async function(event) {
       event.preventDefault(); // evita recarregar a página
 
@@ -77,6 +90,6 @@
         alert("Erro ao conectar com o servidor");
       }
     });
-  </script>
+  </script> -->
 </body>
 </html>
